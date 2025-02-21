@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>guess the no.!</title>
+    <script>
+        function startGame() {
+            let n = Math.floor(Math.random() * 50) + 1; 
+            let x = 0;
+            let attempts = 0;
+            do {
+                x = parseInt(prompt("guess a no. between 1 and 50:"));
+                attempts++;
+                
+                if (x === n) {
+                    alert(`congratulations! you guessed the correct no. in ${attempts} attempts`);
+                } else {
+                    alert("incorrect. try again.");
+                }
+            } while (x !== n); 
+        }
+    </script>
+</head>
+<body>
+    <h1>guess the no.!</h1>
+    <button onclick="startGame()">play</button>
+</body>
+</html>
