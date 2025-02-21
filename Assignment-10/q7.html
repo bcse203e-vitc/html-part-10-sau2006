@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>live text counter</title>
+</head>
+<body>
+    <h1>live text counter</h1>
+    <textarea id="textInput" rows="10" cols="50" placeholder="Start typing..."></textarea>
+    <div>
+        <p>char count: <span id="charCount">0</span></p>
+        <p>word count: </p> <span id="wordCount">0</span></p>
+    </div>
+    <script>
+        const textInput = document.getElementById('textInput');
+        const charCount = document.getElementById('charCount');
+        const wordCount = document.getElementById('wordCount');
+        textInput.addEventListener('input', function() {
+            const text = textInput.value;
+            const currentCharCount = text.length;
+            charCount.textContent = currentCharCount;
+            const currentWordCount = text.trim().split(/\s+/).filter(word => word).length;
+            wordCount.textContent = currentWordCount;
+            if (currentCharCount > 200) {
+                alert('you have exceeded 200 characters');
+            }
+        });
+    </script>
+</body>
+</html>
