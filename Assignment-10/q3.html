@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>order a pizza</title>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const size = document.querySelector('input[name="size"]:checked');
+            const selectedSize = size ? size.value : "no size selected";
+            const toppings = [];
+            const toppingCheckboxes = document.querySelectorAll('input[name="toppings"]:checked');
+            toppingCheckboxes.forEach(function(checkbox) {
+                toppings.push(checkbox.value);
+            });
+            let orderSummary = `<p><strong>pizza size:</strong> ${selectedSize}</p>`;
+
+            if (toppings.length > 0) {
+                orderSummary += `<p><strong>toppings:</strong> ${toppings.join(', ')}</p>`;
+            } else {
+                orderSummary += `<p><strong>toppings:</strong> None</p>`;
+            }
+            document.getElementById('orderSummary').innerHTML = orderSummary;
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('pizzaForm').addEventListener('submit', handleSubmit);
+        });
+    </script>
+</head>
+<body>
+    <h1>order a pizza</h1>
+    <form id="pizzaForm">
+        <h2>select ur preferred size</h2>
+        <label>
+            <input type="radio" name="size" value="Small" required>
+            small
+        </label>
+        <label>
+            <input type="radio" name="size" value="Medium">
+            medium
+        </label>
+        <label>
+            <input type="radio" name="size" value="Large">
+            large
+        </label>
+        <h2>select toppings (can choose multiple)</h2>
+        <label>
+            <input type="checkbox" name="toppings" value="Cheese"> cheese
+        </label>
+        <label>
+            <input type="checkbox" name="toppings" value="Pepperoni"> pepperoni
+        </label>
+        <label>
+            <input type="checkbox" name="toppings" value="Mushrooms"> mushrooms
+        </label>
+        <label>
+            <input type="checkbox" name="toppings" value="Olives"> olives
+        </label>
+        <br><br>
+        <button type="submit">submit</button>
+    </form>
+    <h3>order summary:</h3>
+    <div id="orderSummary"></div>
+</body>
+</html>
