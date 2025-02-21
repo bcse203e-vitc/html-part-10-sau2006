@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>to-do list</title>
+</head>
+<body>
+    <h1>to-do list</h1>
+    <input type="text" id="taskInput" placeholder="Enter new task">
+    <button id="addTaskBtn">add</button>
+    <ul id="taskList"></ul>
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addTaskBtn = document.getElementById('addTaskBtn');
+        const taskList = document.getElementById('taskList');
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== "") {
+                const li = document.createElement('li');
+                const removeBtn = document.createElement('button');
+                removeBtn.textContent = 'Remove';
+                li.textContent = taskText + ' ';
+                li.appendChild(removeBtn);
+                taskList.appendChild(li);
+                taskInput.value = '';
+                removeBtn.addEventListener('click', function() {
+                    taskList.removeChild(li);
+                });
+            }
+        }
+        addTaskBtn.addEventListener('click', addTask);
+        taskInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+    </script>
+</body>
+</html>
