@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>draw</title>
+</head>
+<body>
+    <h1>draw</h1>
+    <label>color: <input type="color" id="colorInput"></label>
+    <label>brush size: <input type="range" id="sizeInput" min="1" max="10" value="5"></label>
+    <canvas id="canvas" width="500" height="500" style="border: 1px solid black;"></canvas>
+    <button id="clearBtn">clear canvas</button>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const colorInput = document.getElementById('colorInput');
+        const sizeInput = document.getElementById('sizeInput');
+        const clearBtn = document.getElementById('clearBtn');
+        let drawing = false;
+        let color = colorInput.value;
+        let size = sizeInput.value;
+        canvas.addEventListener('mousedown', () => {
+            drawing = true;
+        });
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+            ctx.beginPath();
+        });
+        canvas.addEventListener('mousemove', (e) => {
+            if (!drawing) return;
+
+            ctx.lineWidth = size;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = color;
+
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            ctx.beginPath();
+        });
+        colorInput.addEventListener('input', () => {
+            color = colorInput.value;
+        });
+        sizeInput.addEventListener('input', () => {
+            size = sizeInput.value;
+        });
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+    </script>
+</body>
+</html>
