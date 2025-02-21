@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>stack images</title>
+    <style>
+        .image-stack { position: relative; width:500px; }
+        .image-stack img { position: absolute; width: 100%; transition: z-index 0.3s; z-index:0; }
+    </style>
+</head>
+<body>
+    <div class="image-stack">
+        <img src="https://img.freepik.com/free-photo/adorable-white-cat-sunglasses-shirt-lies-fabric-hammock-ai-generated_268835-10929.jpg"  onclick="bringToFront(this)">
+        <img src="https://cdn.britannica.com/93/181393-050-9FC2E61A/cat-Alison-Eldridge-orange-Calico.jpg" alt="Henry the 2nd"  onclick="bringToFront(this)">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQozXZn685r_4PaNX9UMClSS5_IXH65rju3wg&s"  alt="William the 2nd" onclick="bringToFront(this)">    
+    </div>
+    <script>
+        function bringToFront(image) {
+            document.querySelectorAll(".image-stack img").forEach(img => img.style.zIndex = "0");
+            image.style.zIndex = "100";
+        }
+    </script>
+</body>
+</html>
