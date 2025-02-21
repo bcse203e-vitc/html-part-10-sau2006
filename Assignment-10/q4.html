@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>multiplication table generator</title>
+</head>
+<body>
+    <h1>multiplication table generator</h1>
+    <form id="multiplicationForm">
+        <fieldset>
+            <legend>enter a no.</legend>
+            <label for="numberInput">number: </label>
+            <input type="number" id="numberInput" required min="1">
+            <button type="submit">generate table</button>
+        </fieldset>
+    </form>
+    <table id="multiplicationTable"></table>
+    <script>
+        document.getElementById('multiplicationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const number = parseInt(document.getElementById('numberInput').value);
+            const table = document.getElementById('multiplicationTable');
+            table.innerHTML = '';
+            const tableHeader = `
+                <tr>
+                    <th>multiplier</th>
+                    <th>result</th>
+                </tr>
+            `;
+            table.innerHTML = tableHeader;
+            for (let i = 1; i <= 10; i++) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${i}</td>
+                    <td>${i * number}</td>
+                `;
+                table.appendChild(row);
+            }
+        });
+    </script>
+</body>
+</html>
